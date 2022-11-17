@@ -1,0 +1,12 @@
+name: housing_ageron_ml
+channels:
+    - conda-forge
+    - anaconda
+    - default
+
+dependencies:
+    - python=3.10
+    - openpyxl=3.0.10
+    - black=22.10.0
+    - seaborn=0.12.0
+    - matplotlib=3.6.2
