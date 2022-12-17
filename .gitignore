@@ -122,3 +122,7 @@ dmypy.json
 
 # .idea
 .idea
+
+# vscode settings
+.vscode
+

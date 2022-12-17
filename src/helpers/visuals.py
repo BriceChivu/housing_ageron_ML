@@ -1,22 +1,31 @@
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-from src.helpers import helper_functions
 
-project_path = helper_functions.get_project_path()
-visual_path = project_path / "images"
+# Path: src\helpers\visuals.py
+def plot_correlation(
+    df: pd.DataFrame,
+    save_path=Path.cwd() / "images",
+    format_img="png",
+    resolution=300,
+) -> None:
+    """
+    Plot the correlation matrix of a dataframe and save it to the images folder
 
-format = "png"
-resolution = 300
+    Args:
+        df: dataframe from which to plot the correlation matrix
+        save_path: path to save the plot to
+        format_img: format of the image to save
+        resolution: resolution of the image to save
+    """
+    corr_matrix = df.corr()
+    sns.heatmap(corr_matrix, square=True, annot=True, cmap="coolwarm")
 
-
-def plot_correlation(df: pd.DataFrame, format="png", resolution=300):
-    fig, ax = plt.subplots(figsize=(20, 10))
-    corr = df.corr()
-    ax = sns.heatmap(corr, square=True, ax=ax, annot=True, cmap="coolwarm")
-    ax.set_title("Correlation of each feature")
-    plt.tight_layout()
     plt.savefig(
-        visual_path / "correlation", format=format, resolution=resolution
+        save_path / f"correlation_matrix.{format_img}",
+        dpi=resolution,
     )
+    plt.show()
