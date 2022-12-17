@@ -23,7 +23,8 @@ def plot_correlation(
     """
     corr_matrix = df.corr()
     sns.heatmap(corr_matrix, square=True, annot=True, cmap="coolwarm")
-
+    # add title
+    plt.title("Correlation Matrix")
     plt.savefig(
         save_path / f"correlation_matrix.{format_img}",
         dpi=resolution,
